@@ -2,36 +2,35 @@ import { StatusBar as ExpoStatusbar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View, StatusBar } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { ResturantInfo } from "../components/resturan/ResturantInfo";
+import Styled from "styled-components/native";
+import { ResturantInfoCard } from "../components/resturant/resturant-Info-card";
+
+const SaveArea = Styled(SafeAreaView)`
+ flex: 1;
+ margin-top: ${StatusBar.currentHeight}px;
+`;
+
+const SearchContainer = Styled(View)`
+  padding: ${({ theme }) => theme.space[3]};
+  width: 100%;
+`;
+
+const ResturantListContainer = Styled(View)`
+   flex: 1;
+ padding: ${({ theme }) => theme.space[3]};
+    background-color:${({ theme }) => theme.colors.bg.primary};
+    width: 100%;
+`;
 export default function ResturantsScreen() {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.searchBar}>
+    <SaveArea>
+      <SearchContainer>
         <Searchbar placeholder="search" />
-      </View>
-      <View style={styles.listView}>
-        <ResturantInfo />
-      </View>
+      </SearchContainer>
+      <ResturantListContainer>
+        <ResturantInfoCard />
+      </ResturantListContainer>
       <ExpoStatusbar style="auto" />
-    </SafeAreaView>
+    </SaveArea>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  searchBar: {
-    padding: 10,
-    width: "100%",
-  },
-  listView: {
-    padding: 10,
-    flex: 1,
-    backgroundColor: "green",
-    width: "100%",
-  },
-});
