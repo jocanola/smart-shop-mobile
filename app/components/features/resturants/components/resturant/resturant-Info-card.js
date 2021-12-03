@@ -6,43 +6,18 @@ import { SvgXml } from "react-native-svg";
 import star from "../../../../../../assets/star";
 import open from "../../../../../../assets/open";
 import { colors } from "../../../../infrastructure/theme/colors";
+import { Spacer } from "../../../../infrastructure/topography/spacer.component";
+import { AppText } from "../../../../infrastructure/topography/text.component";
+import {
+  Title,
+  Section,
+  Rating,
+  ResturantCard,
+  SectionEnd,
+  Info,
+  Address,
+} from "./resturant.info-card.style";
 
-const ResturantCard = styled(Card.Cover)`
-  padding: 20px;
-`;
-
-const Title = styled(Text)`
-  color: ${({ theme }) => theme.colors.ui.primary};
-  font-size: ${({ theme }) => theme.fontSizes.title};
-  font-family: ${({ theme }) => theme.fonts.heading};
-`;
-
-const Info = styled(View)`
-  padding: ${({ theme }) => theme.space[3]};
-`;
-
-const Address = styled(Text)`
-  font-family: ${({ theme }) => theme.fonts.body};
-  font-size: ${({ theme }) => theme.fontSizes.caption};
-`;
-
-const Rating = styled(View)`
-  flex-direction: row;
-`;
-
-const Section = styled(View)`
-  flex: 1;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: ${({ theme }) => theme.space[3]};
-  padding-bottom: ${({ theme }) => theme.space[3]};
-  padding-right: ${({ theme }) => theme.space[3]};
-`;
-
-const SectionEnd = styled(View)`
-flex-direction: row;
-`;
 export const ResturantInfoCard = ({ resturant = {} }) => {
   const {
     name = "Some resturants",
@@ -72,7 +47,11 @@ export const ResturantInfoCard = ({ resturant = {} }) => {
             ))}
           </Rating>
           <SectionEnd>
-            {isClodedTemporarily? <Text style={{color:"red"}}> Temporary Closed </Text> : null}
+            {isClodedTemporarily ? (
+              <Spacer position="right" size="medium">
+                <AppText variant="error"> Temporary Closed</AppText>
+              </Spacer>
+            ) : null}
             <SvgXml xml={open} width={20} height={20} />
           </SectionEnd>
         </Section>
