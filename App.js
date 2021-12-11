@@ -13,6 +13,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import MapScreen from "./app/components/features/resturants/screens/MapScreen";
 import SettingsScreen from "./app/components/features/resturants/screens/SettingsScreen";
+import { Ionicons } from "@expo/vector-icons";
+import { restaurantsRequest } from "./app/services/location.service";
 
 const Tab = createBottomTabNavigator();
 
@@ -26,10 +28,34 @@ export default function App() {
   if (!loadLato || !loadOswald) {
     return null;
   }
+  restaurantsRequest();
+  const TAB_ICON = {
+    Resturants: "md-restaurant",
+    Map: "map",
+    Settings: "settings",
+  };
+
+  const tabBarIcons = ({ size, color }) => (
+    <Ionicons name={iconName} size={size} color={color} />
+  );
+  const createScreenOptions = ({ route }) => {
+    const iconName = TAB_ICON[route.name];
+    return {
+      tabBarIcon: ({ size, color }) => (
+        <Ionicons name={iconName} size={size} color={color} />
+      ),
+    };
+  };
   return (
     <ThemeProvider theme={theme}>
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          screenOptions={createScreenOptions}
+          tabBarOptions={{
+            activeTintColor: "tomato",
+            inactiveTintColor: "gray",
+          }}
+        >
           <Tab.Screen name="Resturants" component={ResturantsScreen} />
           <Tab.Screen name="Map" component={MapScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />

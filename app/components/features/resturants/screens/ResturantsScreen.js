@@ -10,13 +10,10 @@ import {
 } from "react-native";
 import { Searchbar } from "react-native-paper";
 import Styled from "styled-components/native";
+import { SaveArea } from "../../../infrastructure/topography/save-area.component";
 import { Spacer } from "../../../infrastructure/topography/spacer.component";
 import { ResturantInfoCard } from "../components/resturant/resturant-Info-card";
 
-const SaveArea = Styled(SafeAreaView)`
- flex: 1;
- margin-top: ${StatusBar.currentHeight}px;
-`;
 
 const SearchContainer = Styled(View)`
   padding: ${({ theme }) => theme.space[3]};

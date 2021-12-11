@@ -1,11 +1,12 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { SaveArea } from "../../../infrastructure/topography/save-area.component";
 
 const SettingsScreen = () => {
   return (
-    <View>
+    <SaveArea >
       <Text>SettingsScreen</Text>
-    </View>
+    </SaveArea>
   );
 };
 
